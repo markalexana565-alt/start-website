@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>START — Рекламное агентство полного цикла в Севастополе</title>
+    <meta name="description" content="Производим наружную рекламу в Севастополе с 2007 года. Вывески, полиграфия, брендирование авто, печать на одежде.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div class="preloader" id="preloader">
+    <div class="preloader__inner">
+        <span class="preloader__text">START</span>
+        <div class="preloader__line"></div>
+    </div>
+</div>
+
+<!-- HEADER -->
+<header class="header" id="header">
+    <div class="container header__inner">
+        <a href="#" class="logo">
+            <img src="Logo.svg" alt="СТАРТ" class="logo__img">
+        </a>
+        <nav class="nav" id="nav">
+            <a href="#services" class="nav__link">Услуги</a>
+            <a href="#production" class="nav__link">Производство</a>
+            <a href="#portfolio" class="nav__link">Портфолио</a>
+            <a href="#contacts" class="nav__link">Контакты</a>
+        </nav>
+        <div class="header__contact">
+            <a href="tel:+79787458806" class="header__phone">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div class="header__phone-wrap">
+                    <span class="header__phone-number">+7 978 745 88 06</span>
+                    <span class="header__edo-text">Работаем по ЭДО</span>
+                </div>
+            </a>
+            <a href="mailto:rpk-start@bk.ru" class="header__email">
+                <svg width="16" height="16" viewBox="0 0 24 20" fill="none"><rect x="1" y="1" width="22" height="18" rx="2" stroke="#232323" stroke-width="2"/><path d="M1 3l11 7 11-7" stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                rpk-start@bk.ru
+            </a>
+        </div>
+        <button class="btn btn--red header__btn" data-modal>Оставить заявку</button>
+        <button class="burger" id="burger" aria-label="Меню">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav__inner">
+        <nav class="mobile-nav__links">
+            <a href="#services" class="mobile-nav__link">Услуги</a>
+            <a href="#production" class="mobile-nav__link">Производство</a>
+            <a href="#portfolio" class="mobile-nav__link">Портфолио</a>
+            <a href="#contacts" class="mobile-nav__link">Контакты</a>
+        </nav>
+        <div class="mobile-nav__contact">
+            <a href="tel:+79787458806" class="mobile-nav__phone">+7 978 745 88 06</a>
+            <a href="mailto:rpk-start@bk.ru" class="mobile-nav__email">rpk-start@bk.ru</a>
+        </div>
+        <button class="btn btn--red btn--full" data-modal>Оставить заявку</button>
+    </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero__bg">
+        <div class="hero__circle"></div>
+    </div>
+    <div class="container hero__inner">
+        <div class="hero__content">
+            <h1 class="hero__title">
+                Рекламное агентство<br>
+                <span class="text-red">полного цикла</span><br>
+                в Севастополе
+            </h1>
+            <p class="hero__subtitle">Сами печатаем, режем и собираем вывески. Без наценок посредников.</p>
+            <div class="hero__buttons">
+                <button class="btn btn--red btn--lg" data-modal>Рассчитать макет</button>
+                <a href="https://wa.me/79787458806" class="btn btn--outline btn--lg" target="_blank" rel="noopener">Написать менеджеру</a>
+            </div>
+            <div class="hero__clients">
+                <span class="hero__clients-label">Нам доверяют:</span>
+                <div class="hero__clients-logos">
+                    <div class="client-logo"></div>
+                    <div class="client-logo"></div>
+                    <div class="client-logo"></div>
+                    <div class="client-logo"></div>
+                    <div class="client-logo"></div>
+                    <div class="client-logo client-logo--more">+100</div>
+                </div>
+            </div>
+        </div>
+        <div class="hero__logo">
+            <span class="hero__logo-main">СТАРТ</span>
+            <span class="hero__logo-sub">рекламно-производственная компания</span>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+    <div class="container">
+        <h2 class="section-title" data-anim>Наши основные направления</h2>
+        <div class="services__grid" data-anim>
+            <div class="services__col-left">
+                <a href="naruzhnaya-reklama.html" class="services__card services__card--signs" style="height:396px;text-decoration:none;color:inherit;">
+                    <div class="services__card-inner">
+                        <div class="services__card-text">
+                            <h3 class="services__card-title services__card-title--red">Наружная реклама<br>и вывески</h3>
+                            <p class="services__card-desc">Объемные буквы, световые короба, таблички, лазерная/фрезерная резка, монтаж.</p>
+                        </div>
+                        <div class="services__card-img services__card-img--signs">
+                            <img src="скрины/Наружная реклама и вывески.png" alt="Наружная реклама">
+                        </div>
+                    </div>
+                    <div class="services__arrow">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                </a>
+                <div class="services__card services__card--auto" style="height:161px">
+                    <div class="services__card-inner">
+                        <div class="services__card-text">
+                            <h3 class="services__card-title services__card-title--white">Брендирование авто</h3>
+                            <p class="services__card-desc services__card-desc--white">Объемные буквы, световые короба, таблички,<br>лазерная/фрезерная резка, монтаж.</p>
+                        </div>
+                    </div>
+                    <div class="services__arrow services__arrow--white">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="services__col-right">
+                <a href="shirokoformat.html" class="services__card services__card--print" style="height:574px;text-decoration:none;color:inherit;">
+                    <div class="services__card-inner">
+                        <div class="services__card-text">
+                            <h3 class="services__card-title">Широкоформатная и интерьерная печать</h3>
+                            <p class="services__card-desc">Печать баннеров, плакатов, самоклеящейся пленки, печать на холсте.</p>
+                        </div>
+                        <div class="services__card-img services__card-img--print">
+                            <img src="скрины/Широкоформатная и интерьерная печать.png" alt="Широкоформатная печать">
+                        </div>
+                    </div>
+                    <div class="services__arrow">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="services__bottom" data-anim>
+            <div class="services__card services__card--poly" style="height:198px">
+                <div class="services__card-inner">
+                    <div class="services__card-text">
+                        <h3 class="services__card-title services__card-title--red">Полиграфия</h3>
+                        <p class="services__card-desc">Визитки, листовки, буклеты, каталоги, пластиковые карты и многое другое</p>
+                    </div>
+                    <div class="services__card-img">
+                        <img src="скрины/Полиграфия.png" alt="Полиграфия">
+                    </div>
+                </div>
+                <div class="services__arrow">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+            </div>
+            <div class="services__card services__card--dark" style="height:203px">
+                <div class="services__card-dark-inner">
+                    <div class="services__card-dark-row">
+                        <h3 class="services__card-title services__card-title--white">Печать на<br>одежде</h3>
+                        <p class="services__card-desc services__card-desc--white">Печать на футболках, кепках (шелкография/ДТФ)</p>
+                    </div>
+                    <div class="services__card-dark-divider"></div>
+                    <div class="services__card-dark-row">
+                        <h3 class="services__card-title services__card-title--white">Сувениры</h3>
+                        <p class="services__card-desc services__card-desc--white">Кружки, ручки, корпоративные подарки.</p>
+                    </div>
+                </div>
+                <div class="services__arrow services__arrow--red">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PRODUCTION -->
+<section class="production" id="production">
+    <div class="container">
+        <h2 class="section-title" data-anim>Собственное производство</h2>
+        <p class="section-subtitle" data-anim>Работаем на собственном оборудовании, поэтому гарантируем сроки и цены без накруток посредников.</p>
+        <div class="production__inner">
+            <div class="production__tabs">
+                <button class="production__tab" data-tab="0">
+                    <span class="production__tab-number">01</span>
+                    <span class="production__tab-text">Лазерная и фрезерная резка</span>
+                    <svg class="production__tab-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="production__tab-content" data-content="0">
+                    <p>Высокоточная лазерная и фрезерная резка металла, пластика, дерева. Изготовление объёмных букв, табличек, конструкций любой сложности.</p>
+                </div>
+                <button class="production__tab" data-tab="1">
+                    <span class="production__tab-number">02</span>
+                    <span class="production__tab-text">Печатный цех (Широкоформатка)</span>
+                    <svg class="production__tab-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="production__tab-content" data-content="1">
+                    <p>Широкоформатная печать баннеров, плакатов, наклеек. Печать на холсте, самоклеящейся плёнке, баннерной ткани.</p>
+                </div>
+                <button class="production__tab" data-tab="2">
+                    <span class="production__tab-number">03</span>
+                    <span class="production__tab-text">Оперативная цифра</span>
+                    <svg class="production__tab-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="production__tab-content" data-content="2">
+                    <p>Оперативная цифровая печать мелких тиражей. Визитки, листовки, буклеты — быстро и качественно.</p>
+                </div>
+                <button class="production__tab" data-tab="3">
+                    <span class="production__tab-number">04</span>
+                    <span class="production__tab-text">Печать футболок</span>
+                    <svg class="production__tab-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="production__tab-content" data-content="3">
+                    <p>Шелкография и ДТФ печать на футболках, кепках, сумках и другой одежде. Тиражи от 1 штуки.</p>
+                </div>
+            </div>
+            <div class="production__image">
+                <div class="production__image-item production__image-item--active" data-img="0"></div>
+                <div class="production__image-item" data-img="1"></div>
+                <div class="production__image-item" data-img="2"></div>
+                <div class="production__image-item" data-img="3"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+    <div class="container">
+        <h2 class="section-title" data-anim>О компании START</h2>
+        <p class="section-subtitle" data-anim>Производим наружную рекламу в Севастополе <span class="text-red"><strong>с 2007 года</strong></span></p>
+        <div class="about__content">
+            <div class="about__banner" data-anim>
+                <h3 class="about__banner-title">
+                    Берем<br>
+                    на себя <span class="about__banner-big">всё</span>
+                </h3>
+                <p class="about__banner-text">от идеи до согласования в Архитектуре</p>
+            </div>
+            <div class="about__text" data-anim>
+                <p>Наша цель — не просто напечатать баннер или собрать лайтбокс, а сделать так, чтобы ваша реклама приносила деньги и не создавала проблем. У нас свой штат дизайнеров, собственное производство без наценок и главное — мы сами берем на себя согласование вывесок в Департаменте архитектуры, избавляя вас от штрафов и бюрократии.</p>
+            </div>
+        </div>
+        <div class="about__stats">
+            <div class="stat-card" data-anim>
+                <div class="stat-card__icon">
+                    <span class="stat-card__number" data-count="19">0</span><span class="stat-card__suffix">+</span>
+                </div>
+                <div class="stat-card__title">Лет на рынке</div>
+                <div class="stat-card__text">Дорожим репутацией, живем каждым заказом</div>
+            </div>
+            <div class="stat-card" data-anim>
+                <div class="stat-card__icon">
+                    <img src="скрины/Работаем по ЭДО.svg" alt="Работаем по ЭДО">
+                </div>
+                <div class="stat-card__title">Работаем по ЭДО</div>
+                <div class="stat-card__text">Все закрывающие документы день в день</div>
+            </div>
+            <div class="stat-card" data-anim>
+                <div class="stat-card__icon">
+                    <img src="скрины/Госконтракты.svg" alt="Госконтракты">
+                </div>
+                <div class="stat-card__title">Госконтракты</div>
+                <div class="stat-card__text">Знаем специфику тендеров и ФЗ. Четко соблюдаем тех. задания и ГОСТы</div>
+            </div>
+            <div class="stat-card" data-anim>
+                <div class="stat-card__icon">
+                    <img src="скрины/Доставка по РФ.svg" alt="Доставка по всей РФ">
+                </div>
+                <div class="stat-card__title">Доставка по всей РФ</div>
+                <div class="stat-card__text">По Севастополю (от 350 ₽) и Крыму / СДЭКом по России.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio" id="portfolio">
+    <div class="container">
+        <div class="portfolio__header" data-anim>
+            <h2 class="section-title">Портфолио</h2>
+            <div class="portfolio__filters">
+                <button class="portfolio__filter portfolio__filter--active" data-filter="all">Все работы</button>
+                <button class="portfolio__filter" data-filter="signs">Вывески</button>
+                <button class="portfolio__filter" data-filter="auto">Брендирование авто</button>
+                <button class="portfolio__filter" data-filter="print">Полиграфия</button>
+            </div>
+        </div>
+        <div class="portfolio__grid">
+            <div class="portfolio__item" data-category="signs" data-anim>
+                <img src="скрины/portfolio/1.jpg" alt="Портфолио 1">
+            </div>
+            <div class="portfolio__item" data-category="signs" data-anim>
+                <img src="скрины/portfolio/2.jpg" alt="Портфолио 2">
+            </div>
+            <div class="portfolio__item" data-category="signs" data-anim>
+                <img src="скрины/portfolio/3.jpg" alt="Портфолио 3">
+            </div>
+            <div class="portfolio__item" data-category="signs" data-anim>
+                <img src="скрины/portfolio/4.jpg" alt="Портфолио 4">
+            </div>
+            <div class="portfolio__item" data-category="signs" data-anim>
+                <img src="скрины/portfolio/5.jpg" alt="Портфолио 5">
+            </div>
+            <div class="portfolio__item" data-category="signs" data-anim>
+                <img src="скрины/portfolio/6.jpg" alt="Портфолио 6">
+            </div>
+            <div class="portfolio__item" data-category="signs" data-anim>
+                <img src="скрины/portfolio/7.jpg" alt="Портфолио 7">
+            </div>
+            <div class="portfolio__item" data-category="signs" data-anim>
+                <img src="скрины/portfolio/8.jpg" alt="Портфолио 8">
+            </div>
+            <div class="portfolio__item" data-category="signs" data-anim>
+                <img src="скрины/portfolio/9.jpg" alt="Портфолио 9">
+            </div>
+            <div class="portfolio__item" data-category="signs" data-anim>
+                <img src="скрины/portfolio/10.jpg" alt="Портфолио 10">
+            </div>
+        </div>
+        <div class="portfolio__nav">
+            <button class="portfolio__nav-btn portfolio__nav-btn--prev">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="portfolio__nav-btn portfolio__nav-btn--next">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- ORDER FORM -->
+<section class="order-form">
+    <div class="container">
+        <div class="order-form__inner" data-anim>
+            <div class="order-form__left">
+                <div class="order-form__file-area" id="fileArea2">
+                    <input type="file" id="fileInput2" accept=".pdf,.cdr,.ai,.jpg,.jpeg,.png" hidden>
+                    <p class="order-form__file-text">Прикрепить файл <span>(PDF, CDR, AI, JPG)</span></p>
+                    <svg class="order-form__clip" width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48" stroke="#232323" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <p class="contact-form__file-name" id="fileName2"></p>
+                </div>
+                <div class="order-form__textarea-area">
+                    <textarea class="order-form__textarea" placeholder="Опишите ваше задание"></textarea>
+                </div>
+            </div>
+            <div class="order-form__right">
+                <h2 class="order-form__title">Оформить заказ</h2>
+                <form class="order-form__form" id="orderForm">
+                    <div class="form-group">
+                        <input type="text" placeholder="Имя" class="form-input form-input--white" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="+7 (" class="form-input form-input--white phone-mask" required>
+                    </div>
+                    <div class="form-group form-group--email">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" stroke="#fff" stroke-width="1.5"/><path d="M2 4l10 8 10-8" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <input type="email" placeholder="Email" class="form-input form-input--white">
+                    </div>
+                    <div class="form-group form-group--checkbox">
+                        <input type="checkbox" id="consent2" class="form-checkbox form-checkbox--white" required>
+                        <label for="consent2" class="form-label form-label--white">Даю согласие на обработку персональных данных</label>
+                    </div>
+                    <button type="submit" class="btn btn--white btn--full">Отправить заявку</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CLIENTS -->
+<section class="clients">
+    <div class="container">
+        <h2 class="section-title" data-anim>Нам доверяют свой бренд</h2>
+    </div>
+    <div class="clients__ticker">
+        <div class="clients__track">
+            <div class="clients__logo-item"></div>
+            <div class="clients__logo-item"></div>
+            <div class="clients__logo-item"></div>
+            <div class="clients__logo-item"></div>
+            <div class="clients__logo-item"></div>
+            <div class="clients__logo-item"></div>
+            <div class="clients__logo-item"></div>
+            <div class="clients__logo-item"></div>
+            <div class="clients__logo-item"></div>
+            <div class="clients__logo-item"></div>
+            <div class="clients__logo-item"></div>
+            <div class="clients__logo-item"></div>
+            <div class="clients__logo-item"></div>
+            <div class="clients__logo-item"></div>
+            <div class="clients__logo-item"></div>
+            <div class="clients__logo-item"></div>
+            <div class="clients__logo-item"></div>
+            <div class="clients__logo-item"></div>
+            <div class="clients__logo-item"></div>
+            <div class="clients__logo-item"></div>
+        </div>
+    </div>
+</section>
+
+<!-- STAGES -->
+<section class="stages" id="stages">
+    <div class="container">
+        <h2 class="section-title" data-anim>Этапы работы</h2>
+        <div class="stages__wrapper">
+            <div class="stages__grid">
+                <div class="stage-card" data-anim>
+                    <div class="stage-card__number">[1]</div>
+                    <h3 class="stage-card__title">Заявка и точный расчет</h3>
+                    <p class="stage-card__text">Вы присылаете ТЗ или макет. Мы делаем бесплатный расчет стоимости и сроков</p>
+                </div>
+                <div class="stage-card" data-anim>
+                    <div class="stage-card__number">[2]</div>
+                    <h3 class="stage-card__title">Дизайн и Согласование</h3>
+                    <p class="stage-card__text">Адаптируем макет под производство. Согласовываем с вами финальный вариант.</p>
+                </div>
+                <div class="stage-card" data-anim>
+                    <div class="stage-card__number">[3]</div>
+                    <h3 class="stage-card__title">Производство</h3>
+                    <p class="stage-card__text">Запускаем заказ в наш цех. Печатаем / фрезеруем / собираем конструкцию</p>
+                </div>
+                <div class="stage-card" data-anim>
+                    <div class="stage-card__number stage-card__number--white">[4]</div>
+                    <h3 class="stage-card__title">Монтаж и Гарантия</h3>
+                    <p class="stage-card__text">Аккуратно доставляем на объект, монтируем, подключаем электрику и убираем за собой.</p>
+                </div>
+            </div>
+            <div class="stages__center">
+                <img src="скрины/Круг зернистый этары работы.png" alt="" class="stages__circle">
+            </div>
+            <div class="stages__brand">
+                <img src="Logo.svg" alt="СТАРТ" class="stages__brand-logo">
+            </div>
+        </div>
+    </div>
+</section>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+    <div class="container">
+        <h2 class="section-title" data-anim>Отвечаем на самые частые вопросы</h2>
+        <div class="faq__list">
+            <div class="faq__item">
+                <button class="faq__question">
+                    <span>В каких форматах вы принимаете макеты для печати?</span>
+                    <svg class="faq__icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="faq__answer">
+                    <p>Идеальные форматы для работы: векторные (CDR, AI, EPS, PDF) со шрифтами, переведенными в кривые. Для широкоформатной и цифровой печати принимаем растровые файлы (TIFF, JPG, PNG) в высоком разрешении (от 300 dpi) в цветовой модели CMYK. Если макета нет — наши дизайнеры разработают его с нуля.</p>
+                </div>
+            </div>
+            <div class="faq__item">
+                <button class="faq__question">
+                    <span>Даете ли вы гарантию на вывески и монтажные работы?</span>
+                    <svg class="faq__icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="faq__answer">
+                    <p>Да, мы предоставляем гарантию на все виды работ. Срок гарантии обсуждается индивидуально в зависимости от типа продукции и условий эксплуатации.</p>
+                </div>
+            </div>
+            <div class="faq__item">
+                <button class="faq__question">
+                    <span>Вы делаете монтаж? Есть ли доставка?</span>
+                    <svg class="faq__icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="faq__answer">
+                    <p>Да, мы выполняем монтажные работы и доставку по Севастополю и Крыму. По России отправляем через СДЭК.</p>
+                </div>
+            </div>
+            <div class="faq__item">
+                <button class="faq__question">
+                    <span>Какие сроки изготовления заказа?</span>
+                    <svg class="faq__icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="faq__answer">
+                    <p>Сроки зависят от типа продукции и объема заказа. Простые заказы выполняем от 1-2 рабочих дней. Сложные конструкции — от 3 до 7 рабочих дней.</p>
+                </div>
+            </div>
+            <div class="faq__item">
+                <button class="faq__question">
+                    <span>Работаете ли вы с юрлицами и Госучреждениями по ЭДО?</span>
+                    <svg class="faq__icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="faq__answer">
+                    <p>Да, работаем с юридическими лицами и государственными учреждениями. Выставляем счета, работаем по ЭДО, предоставляем все закрывающие документы.</p>
+                </div>
+            </div>
+            <div class="faq__item">
+                <button class="faq__question">
+                    <span>Нужно ли согласовывать вывеску?</span>
+                    <svg class="faq__icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="faq__answer">
+                    <p>Да, вывески нужно согласовывать в Департаменте архитектуры. Мы берём на себя весь процесс согласования, избавляя вас от штрафов и бюрократии.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+    <div class="container">
+        <h2 class="cta__title" data-anim>Остались вопросы?</h2>
+        <p class="cta__subtitle" data-anim>Оставьте заявку и менеджер свяжется с вами в ближайшее время</p>
+        <div class="cta__form-wrap" data-anim>
+            <form class="cta__form" id="ctaForm">
+                <div class="form-group">
+                    <input type="text" placeholder="Имя" class="form-input form-input--red" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" placeholder="+7 (" class="form-input form-input--red phone-mask" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Email" class="form-input form-input--red">
+                </div>
+                <div class="form-group form-group--checkbox">
+                    <input type="checkbox" id="consent3" class="form-checkbox" required>
+                    <label for="consent3" class="form-label">Даю согласие на обработку персональных данных</label>
+                </div>
+                <button type="submit" class="btn btn--white btn--full">Отправить заявку</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer__top">
+            <img src="Logo.svg" alt="СТАРТ" class="footer__logo-img">
+        </div>
+        <div class="footer__content">
+            <div class="footer__left">
+                <div class="footer__map">
+                    <iframe src="https://yandex.ru/map-widget/v1/?ll=33.519907%2C44.589406&z=16&pt=33.519907,44.589406,pm2rdl" width="100%" height="100%" style="border:0;border-radius:22px;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+                <p class="footer__address">г. Севастополь, ул. Николая Музыки, 18</p>
+            </div>
+            <div class="footer__right">
+                <ul class="footer__services-list">
+                    <li><a href="naruzhnaya-reklama.html"><svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M2 7h16M13 2l5 5-5 5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Наружная реклама и вывески</a></li>
+                    <li><a href="shirokoformat.html"><svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M2 7h16M13 2l5 5-5 5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Широкоформатная и интерьерная печать</a></li>
+                    <li><a href="#services"><svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M2 7h16M13 2l5 5-5 5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Брендирование авто</a></li>
+                    <li><a href="#services"><svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M2 7h16M13 2l5 5-5 5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Сувенирная продукция</a></li>
+                    <li><a href="#services"><svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M2 7h16M13 2l5 5-5 5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Полиграфия</a></li>
+                    <li><a href="#services"><svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M2 7h16M13 2l5 5-5 5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Печать на одежде</a></li>
+                </ul>
+                <div class="footer__contacts">
+                    <a href="https://t.me/79787458806" class="footer__phone" target="_blank" rel="noopener">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                        +7 978 745 88 06
+                    </a>
+                    <a href="mailto:rpk-start@bk.ru" class="footer__email">
+                        <svg width="24" height="20" viewBox="0 0 24 20" fill="none"><rect x="1" y="1" width="22" height="18" rx="2" stroke="white" stroke-width="2"/><path d="M1 3l11 7 11-7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        rpk-start@bk.ru
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- SCROLL TO TOP -->
+<button class="scroll-top" id="scrollTop" aria-label="Наверх">
+    <svg width="20" height="20" viewBox="0 0 20 20"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+    <div class="modal__overlay"></div>
+    <div class="modal__content">
+        <button class="modal__close" aria-label="Закрыть">&times;</button>
+        <h3 class="modal__title">Оставить заявку</h3>
+        <form class="modal__form" id="modalForm">
+            <div class="form-group">
+                <input type="text" placeholder="ИМЯ" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <input type="tel" placeholder="+7 (___) ___-__-__" class="form-input phone-mask" required>
+            </div>
+            <div class="form-group">
+                <textarea placeholder="Опишите ваше задание" class="form-input form-textarea" rows="3"></textarea>
+            </div>
+            <div class="form-group form-group--checkbox">
+                <input type="checkbox" id="consent3" class="form-checkbox" required>
+                <label for="consent3" class="form-label">Даю согласие на обработку персональных данных</label>
+            </div>
+            <button type="submit" class="btn btn--red btn--full">Отправить заявку</button>
+        </form>
+    </div>
+</div>
+
+<!-- SUCCESS TOAST -->
+<div class="toast" id="toast">
+    <div class="toast__inner">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#28a745" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#28a745" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Заявка отправлена! Мы свяжемся с вами в ближайшее время.</span>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
