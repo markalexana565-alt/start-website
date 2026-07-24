@@ -145,7 +145,7 @@ function switchPreview(imgEl, newSrc) {
 function renderClothes(el) {
     const photoMap = {
         dtf: 'images/suvenir/dtf.jpeg',
-        silk: 'images/suvenir/Шелкография.jpeg'
+        silk: 'images/suvenir/silkography.jpeg'
     };
     el.innerHTML = `
     <div class="sv-calc-layout">
