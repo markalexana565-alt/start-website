@@ -59,9 +59,9 @@
                     <div>
                         <a href="poligrafia.html" class="mega-menu__title">Полиграфия</a>
                         <ul class="mega-menu__list">
-                            <li><a href="print.html#visiting-cards" class="mega-menu__link">Визитки и листовки</a></li>
-                            <li><a href="print.html#booklets" class="mega-menu__link">Буклеты и каталоги</a></li>
-                            <li><a href="print.html#stickers" class="mega-menu__link">Наклейки и стикеры</a></li>
+                            <li><a href="#calc" class="mega-menu__link">Визитки и листовки</a></li>
+                            <li><a href="#calc" class="mega-menu__link">Буклеты и каталоги</a></li>
+                            <li><a href="#calc" class="mega-menu__link">Наклейки и стикеры</a></li>
                         </ul>
                     </div>
                     <div>
@@ -135,9 +135,9 @@
                     <svg class="mobile-nav__toggle-icon" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
                 </button>
                 <div class="mobile-nav__submenu">
-                    <a href="print.html#visiting-cards" class="mobile-nav__submenu-link">Визитки и листовки</a>
-                    <a href="print.html#booklets" class="mobile-nav__submenu-link">Буклеты и каталоги</a>
-                    <a href="print.html#stickers" class="mobile-nav__submenu-link">Наклейки и стикеры</a>
+                    <a href="#calc" class="mobile-nav__submenu-link">Визитки и листовки</a>
+                    <a href="#calc" class="mobile-nav__submenu-link">Буклеты и каталоги</a>
+                    <a href="#calc" class="mobile-nav__submenu-link">Наклейки и стикеры</a>
                 </div>
             </div>
             <div class="mobile-nav__group">
@@ -318,132 +318,215 @@
                 <h2 class="pg-calc__title">Рассчитайте стоимость вашего заказа</h2>
                 <p class="pg-calc__subtitle">Выберите параметры и получите точную цену за несколько секунд</p>
 
-                <div class="pg-calc__tabs">
-                    <button class="pg-calc__tab pg-calc__tab--active" data-tab="vis">Визитки</button>
-                    <button class="pg-calc__tab" data-tab="list">Листовки и Буклеты</button>
+                <div class="pg-calc__tabs" id="pgTopTabs">
+                    <button class="pg-calc__tab pg-calc__tab--active" data-tab="offset">Сборные тиражи (Офсет)</button>
+                    <button class="pg-calc__tab" data-tab="digital">Цифровая печать</button>
                 </div>
+                <p class="pg-calc__hint">Сборные тиражи — печать нескольких заказов на одном листе. Самая низкая цена от 1000 шт., срок 3–5 дней.</p>
 
-                <!-- Визитки -->
-                <div class="pg-calc__content pg-calc__content--active" data-content="vis">
-                    <div class="pg-calc__form">
-                        <div class="pg-calc__row">
-                            <div class="pg-calc__col">
-                                <label class="pg-calc__label">Тип визитки / Размер</label>
-                                <div class="pg-calc__pills" data-field="visSize">
-                                    <button class="pg-calc__pill pg-calc__pill--active" data-value="90x50">90×50 мм (Стандарт)</button>
-                                    <button class="pg-calc__pill" data-value="85x55">85×55 мм (Евро)</button>
-                                    <button class="pg-calc__pill" data-value="70x100">70×100 мм (Календарик)</button>
+                <!-- Офсет -->
+                <div class="pg-calc__content pg-calc__content--active" data-content="offset">
+                    <div class="pg-calc__sub-tabs">
+                        <button class="pg-calc__tab pg-calc__tab--active" data-subtab="vis">Визитки</button>
+                        <button class="pg-calc__tab" data-subtab="list">Листовки и Буклеты</button>
+                    </div>
+
+                    <!-- Визитки -->
+                    <div class="pg-calc__sub-content pg-calc__sub-content--active" data-subcontent="vis">
+                        <div class="pg-calc__form">
+                            <div class="pg-calc__row">
+                                <div class="pg-calc__col">
+                                    <label class="pg-calc__label">Тип визитки / Размер</label>
+                                    <div class="pg-calc__pills" data-field="visSize">
+                                        <button class="pg-calc__pill pg-calc__pill--active" data-value="90x50">90×50 мм (Стандарт)</button>
+                                        <button class="pg-calc__pill" data-value="85x55">85×55 мм (Евро)</button>
+                                        <button class="pg-calc__pill" data-value="70x100">70×100 мм (Календарик)</button>
+                                    </div>
+
+                                    <label class="pg-calc__label">Бумага / Плотность</label>
+                                    <select class="pg-calc__select" data-field="visPaper">
+                                        <option value="300" selected>Мелованный картон 300 г/м²</option>
+                                    </select>
+
+                                    <label class="pg-calc__label">Красочность</label>
+                                    <div class="pg-calc__pills" data-field="visPrint">
+                                        <button class="pg-calc__pill pg-calc__pill--active" data-value="4+0">4+0 (Односторонняя)</button>
+                                        <button class="pg-calc__pill" data-value="4+4">4+4 (Двухсторонняя)</button>
+                                    </div>
+
+                                    <label class="pg-calc__label">Ламинация</label>
+                                    <div class="pg-calc__pills" data-field="visLam">
+                                        <button class="pg-calc__pill pg-calc__pill--active" data-value="none">Без ламинации</button>
+                                        <button class="pg-calc__pill" data-value="gloss10">Глянец (1+0)</button>
+                                        <button class="pg-calc__pill" data-value="gloss11">Глянец (1+1)</button>
+                                        <button class="pg-calc__pill" data-value="soft11">Soft-Touch (1+1)</button>
+                                    </div>
+
+                                    <label class="pg-calc__label">Доп. обработка (от 1000 шт)</label>
+                                    <div class="pg-calc__checks">
+                                        <label class="pg-calc__check">
+                                            <input type="checkbox" data-option="round"> Закругление 4-х углов (+390 ₽/1000 шт)
+                                        </label>
+                                        <label class="pg-calc__check">
+                                            <input type="checkbox" data-option="hole"> Отверстие Ø 5 мм (+450 ₽/1000 шт)
+                                        </label>
+                                    </div>
                                 </div>
+                                <div class="pg-calc__col">
+                                    <label class="pg-calc__label">Тираж</label>
+                                    <div class="pg-calc__pills pg-calc__pills--wrap" data-field="visQty">
+                                        <button class="pg-calc__pill pg-calc__pill--active" data-value="1000">1 000</button>
+                                        <button class="pg-calc__pill" data-value="2000">2 000</button>
+                                        <button class="pg-calc__pill" data-value="3000">3 000</button>
+                                        <button class="pg-calc__pill" data-value="5000">5 000</button>
+                                        <button class="pg-calc__pill" data-value="10000">10 000</button>
+                                    </div>
+                                    <input type="number" min="1000" step="1000" placeholder="Свой тираж (от 1000 шт.)" class="pg-calc__input-custom" data-field="visQtyCustom">
+                                    <div class="pg-calc__discount-note" style="display:none;">От 10 000 шт. скидка (уточняйте у менеджера)</div>
 
-                                <label class="pg-calc__label">Красочность</label>
-                                <div class="pg-calc__pills" data-field="visPrint">
-                                    <button class="pg-calc__pill pg-calc__pill--active" data-value="4+0">4+0 (Односторонняя)</button>
-                                    <button class="pg-calc__pill" data-value="4+4">4+4 (Двухсторонняя)</button>
-                                </div>
+                                    <!-- Превью изделия (Визитки) -->
+                                    <div class="pg-calc__preview" id="visPreview">
+                                        <img src="images/products/business-card.png" alt="Превью изделия" class="pg-calc__preview-img" id="visPreviewImg" onerror="this.src='images/polygraphy.png'">
+                                        <span class="pg-calc__preview-label">Внешний вид изделия</span>
+                                    </div>
 
-                                <label class="pg-calc__label">Ламинация</label>
-                                <div class="pg-calc__pills" data-field="visLam">
-                                    <button class="pg-calc__pill pg-calc__pill--active" data-value="none">Без ламинации</button>
-                                    <button class="pg-calc__pill" data-value="gloss10">Глянец (1+0)</button>
-                                    <button class="pg-calc__pill" data-value="gloss11">Глянец (1+1)</button>
-                                    <button class="pg-calc__pill" data-value="soft11">Soft-Touch (1+1)</button>
-                                </div>
+                                    <div class="pg-calc__result">
+                                        <div class="pg-calc__price" id="visPrice">— ₽</div>
+                                        <div class="pg-calc__per" id="visPer">— ₽/шт</div>
+                                        <div class="pg-calc__design" id="visDesign" style="display:none;">+ Разработка макета дизайнером</div>
+                                        <div class="pg-calc__delivery" id="visDelivery">Срок: —</div>
+                                    </div>
 
-                                <label class="pg-calc__label">Доп. обработка (от 1000 шт)</label>
-                                <div class="pg-calc__checks">
-                                    <label class="pg-calc__check">
-                                        <input type="checkbox" data-option="round"> Скругление 4-х углов (+400 ₽/1000 шт)
+                                    <label class="pg-calc__check pg-calc__check--full">
+                                        <input type="checkbox" data-field="noDesign"> Нет готового макета (нужна разработка дизайна)
                                     </label>
-                                    <label class="pg-calc__check">
-                                        <input type="checkbox" data-option="hole"> Отверстие Ø 5 мм (+450 ₽/1000 шт)
-                                    </label>
+
+                                    <div class="pg-calc__upload" id="visUpload">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"/></svg>
+                                        <span>Прикрепить макет (JPG, PNG, PDF, AI, CDR)</span>
+                                        <input type="file" class="pg-calc__file-input" accept=".jpg,.jpeg,.png,.pdf,.ai,.cdr">
+                                    </div>
+
+                                    <button class="btn btn--red btn--full pg-calc__order" data-order="vis">Оформить заказ</button>
                                 </div>
                             </div>
-                            <div class="pg-calc__col">
-                                <label class="pg-calc__label">Тираж</label>
-                                <div class="pg-calc__pills pg-calc__pills--wrap" data-field="visQty">
-                                    <button class="pg-calc__pill pg-calc__pill--active" data-value="100">100</button>
-                                    <button class="pg-calc__pill" data-value="200">200</button>
-                                    <button class="pg-calc__pill" data-value="300">300</button>
-                                    <button class="pg-calc__pill" data-value="1000">1 000</button>
+                        </div>
+                    </div>
+
+                    <!-- Листовки и Буклеты -->
+                    <div class="pg-calc__sub-content" data-subcontent="list">
+                        <div class="pg-calc__form">
+                            <div class="pg-calc__row">
+                                <div class="pg-calc__col">
+                                    <label class="pg-calc__label">Формат изделия</label>
+                                    <div class="pg-calc__pills pg-calc__pills--wrap" data-field="listFormat">
+                                        <button class="pg-calc__pill pg-calc__pill--active" data-value="flyer">Еврофлаер 99×210</button>
+                                        <button class="pg-calc__pill" data-value="dva">Два евро 198×210</button>
+                                        <button class="pg-calc__pill" data-value="booklet">Евробуклет 297×210</button>
+                                        <button class="pg-calc__pill" data-value="a7">А7</button>
+                                        <button class="pg-calc__pill" data-value="a6">А6</button>
+                                        <button class="pg-calc__pill" data-value="a5">А5</button>
+                                        <button class="pg-calc__pill" data-value="a4">А4</button>
+                                        <button class="pg-calc__pill" data-value="a3">А3 (420×297)</button>
+                                    </div>
+
+                                    <label class="pg-calc__label">Бумага / Плотность</label>
+                                    <select class="pg-calc__select" data-field="listPaper">
+                                        <option value="115">Мелованная 115 г/м²</option>
+                                        <option value="130" selected>Мелованная 130 г/м² (стандарт)</option>
+                                        <option value="170">Мелованная 170 г/м²</option>
+                                        <option value="300">Мелованный картон 300 г/м²</option>
+                                    </select>
+
+                                    <label class="pg-calc__label">Красочность</label>
+                                    <div class="pg-calc__pills" data-field="listPrint">
+                                        <button class="pg-calc__pill pg-calc__pill--active" data-value="4+0">4+0 (Односторонняя)</button>
+                                        <button class="pg-calc__pill" data-value="4+4">4+4 (Двухсторонняя)</button>
+                                    </div>
+
+                                    <label class="pg-calc__label">Послепечатная обработка</label>
+                                    <div class="pg-calc__checks">
+                                        <label class="pg-calc__check">
+                                            <input type="checkbox" data-option="listFaltsovka"> Фальцовка (сгиб) — 0.15 ₽/шт
+                                        </label>
+                                        <label class="pg-calc__check">
+                                            <input type="checkbox" data-option="listBigovka"> Биговка (канавка) — 0.75 ₽/шт
+                                        </label>
+                                        <label class="pg-calc__check">
+                                            <input type="checkbox" data-option="listRez"> Дополнительный рез — 75 ₽/500 шт
+                                        </label>
+                                        <label class="pg-calc__check">
+                                            <input type="checkbox" data-option="listPerforatsiya"> Перфорация — 0.3 ₽/подход/шт
+                                        </label>
+                                        <label class="pg-calc__check">
+                                            <input type="checkbox" data-option="listHole"> Отверстие 5 мм — 450 ₽/1000 шт
+                                        </label>
+                                        <label class="pg-calc__check">
+                                            <input type="checkbox" data-option="listRound"> Закругление углов — 390 ₽/1000 шт
+                                        </label>
+                                    </div>
+
+                                    <label class="pg-calc__label">Срочность</label>
+                                    <div class="pg-calc__checks">
+                                        <label class="pg-calc__check">
+                                            <input type="checkbox" data-field="listExpress"> Срочно 3–4 рабочих дня (+15%)
+                                        </label>
+                                    </div>
                                 </div>
+                                <div class="pg-calc__col">
+                                    <label class="pg-calc__label">Тираж</label>
+                                    <div class="pg-calc__pills pg-calc__pills--wrap" data-field="listQty">
+                                        <button class="pg-calc__pill pg-calc__pill--active" data-value="1000">1 000</button>
+                                        <button class="pg-calc__pill" data-value="2000">2 000</button>
+                                        <button class="pg-calc__pill" data-value="3000">3 000</button>
+                                        <button class="pg-calc__pill" data-value="5000">5 000</button>
+                                        <button class="pg-calc__pill" data-value="10000">10 000</button>
+                                    </div>
+                                    <input type="number" min="1000" step="1000" placeholder="Свой тираж (от 1000 шт.)" class="pg-calc__input-custom" data-field="listQtyCustom">
+                                    <div class="pg-calc__discount-note" style="display:none;">От 10 000 шт. скидка (уточняйте у менеджера)</div>
 
-                                <div class="pg-calc__result">
-                                    <div class="pg-calc__price" id="visPrice">— ₽</div>
-                                    <div class="pg-calc__per" id="visPer">— ₽/шт</div>
-                                    <div class="pg-calc__design" id="visDesign" style="display:none;">+ Разработка макета дизайнером</div>
-                                    <div class="pg-calc__delivery" id="visDelivery">Срок: —</div>
+                                    <!-- Превью изделия (Листовки) -->
+                                    <div class="pg-calc__preview" id="listPreview">
+                                        <img src="images/products/flyer.png" alt="Превью изделия" class="pg-calc__preview-img" id="listPreviewImg" onerror="this.src='images/polygraphy.png'">
+                                        <span class="pg-calc__preview-label">Внешний вид изделия</span>
+                                    </div>
+
+                                    <div class="pg-calc__result">
+                                        <div class="pg-calc__price" id="listPrice">— ₽</div>
+                                        <div class="pg-calc__per" id="listPer">— ₽/шт</div>
+                                        <div class="pg-calc__design" id="listDesign" style="display:none;">+ Разработка макета дизайнером</div>
+                                        <div class="pg-calc__delivery" id="listDelivery">Срок: —</div>
+                                    </div>
+
+                                    <label class="pg-calc__check pg-calc__check--full">
+                                        <input type="checkbox" data-field="noDesignList"> Нет готового макета (нужна разработка дизайна)
+                                    </label>
+
+                                    <div class="pg-calc__upload" id="listUpload">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"/></svg>
+                                        <span>Прикрепить макет (JPG, PNG, PDF, AI, CDR)</span>
+                                        <input type="file" class="pg-calc__file-input" accept=".jpg,.jpeg,.png,.pdf,.ai,.cdr">
+                                    </div>
+
+                                    <button class="btn btn--red btn--full pg-calc__order" data-order="list">Оформить заказ</button>
                                 </div>
-
-                                <label class="pg-calc__check pg-calc__check--full">
-                                    <input type="checkbox" data-field="noDesign"> Нет готового макета (нужна разработка дизайна)
-                                </label>
-
-                                <div class="pg-calc__upload" id="visUpload">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"/></svg>
-                                    <span>Прикрепить макет (JPG, PNG, PDF, AI, CDR)</span>
-                                    <input type="file" class="pg-calc__file-input" accept=".jpg,.jpeg,.png,.pdf,.ai,.cdr">
-                                </div>
-
-                                <button class="btn btn--red btn--full pg-calc__order" data-order="vis">Оформить заказ</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Листовки и Буклеты -->
-                <div class="pg-calc__content" data-content="list">
-                    <div class="pg-calc__form">
-                        <div class="pg-calc__row">
-                            <div class="pg-calc__col">
-                                <label class="pg-calc__label">Формат изделия</label>
-                                <div class="pg-calc__pills pg-calc__pills--wrap" data-field="listFormat">
-                                    <button class="pg-calc__pill pg-calc__pill--active" data-value="flyer">Еврофлаер 99×210</button>
-                                    <button class="pg-calc__pill" data-value="dva">Два евро 198×210</button>
-                                    <button class="pg-calc__pill" data-value="booklet">Евробуклет 297×210</button>
-                                    <button class="pg-calc__pill" data-value="a7">А7</button>
-                                    <button class="pg-calc__pill" data-value="a6">А6</button>
-                                    <button class="pg-calc__pill" data-value="a5">А5</button>
-                                    <button class="pg-calc__pill" data-value="a4">А4</button>
-                                </div>
-
-                                <label class="pg-calc__label">Красочность</label>
-                                <div class="pg-calc__pills" data-field="listPrint">
-                                    <button class="pg-calc__pill pg-calc__pill--active" data-value="4+0">4+0 (Односторонняя)</button>
-                                    <button class="pg-calc__pill" data-value="4+4">4+4 (Двухсторонняя)</button>
-                                </div>
-
-                                <label class="pg-calc__label">Срочность</label>
-                                <div class="pg-calc__checks">
-                                    <label class="pg-calc__check">
-                                        <input type="checkbox" data-field="listExpress"> Срочно 3–4 рабочих дня (+15%)
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="pg-calc__col">
-                                <label class="pg-calc__label">Тираж</label>
-                                <div class="pg-calc__pills pg-calc__pills--wrap" data-field="listQty"></div>
-
-                                <div class="pg-calc__result">
-                                    <div class="pg-calc__price" id="listPrice">— ₽</div>
-                                    <div class="pg-calc__per" id="listPer">— ₽/шт</div>
-                                    <div class="pg-calc__design" id="listDesign" style="display:none;">+ Разработка макета дизайнером</div>
-                                    <div class="pg-calc__delivery" id="listDelivery">Срок: —</div>
-                                </div>
-
-                                <label class="pg-calc__check pg-calc__check--full">
-                                    <input type="checkbox" data-field="noDesignList"> Нет готового макета (нужна разработка дизайна)
-                                </label>
-
-                                <div class="pg-calc__upload" id="listUpload">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"/></svg>
-                                    <span>Прикрепить макет (JPG, PNG, PDF, AI, CDR)</span>
-                                    <input type="file" class="pg-calc__file-input" accept=".jpg,.jpeg,.png,.pdf,.ai,.cdr">
-                                </div>
-
-                                <button class="btn btn--red btn--full pg-calc__order" data-order="list">Оформить заказ</button>
-                            </div>
+                <!-- Цифровая печать (заглушка) -->
+                <div class="pg-calc__content" data-content="digital">
+                    <div class="pg-calc__placeholder">
+                        <div class="pg-calc__placeholder-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
+                                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
+                                <path d="M6 6h.01M6 18h.01"/>
+                            </svg>
                         </div>
+                        <h3 class="pg-calc__placeholder-title">Информация обновляется</h3>
+                        <p class="pg-calc__placeholder-text">Калькулятор для цифровой печати скоро появится. Следите за обновлениями!</p>
                     </div>
                 </div>
 
@@ -843,380 +926,12 @@
     selectFormat('a4');
 })();
 
-// === ПРАЙС-ЛИСТ ===
-const polyPricelist = {
-    visits: {
-        digital: {
-            '90x50': {
-                none: { '4+0': { 100: 650, 200: 1000, 300: 1350 }, '4+4': { 100: 850, 200: 1300, 300: 1650 } },
-                gloss10: { '4+0': { 100: 900, 200: 1200, 300: 1600 }, '4+4': { 100: 1050, 200: 1500, 300: 1900 } },
-                gloss11: { '4+0': { 100: 1000, 200: 1300, 300: 1700 }, '4+4': { 100: 1150, 200: 1600, 300: 2050 } },
-                soft11: { '4+0': { 100: 1050, 200: 1600, 300: 2250 }, '4+4': { 100: 1200, 200: 1950, 300: 2550 } }
-            },
-            '85x55': {
-                none: { '4+0': { 100: 700, 200: 1000, 300: 1300 }, '4+4': { 100: 900, 200: 1300, 300: 1650 } },
-                gloss10: { '4+0': { 100: 800, 200: 1100, 300: 1500 }, '4+4': { 100: 1000, 200: 1400, 300: 1800 } },
-                gloss11: { '4+0': { 100: 900, 200: 1300, 300: 1700 }, '4+4': { 100: 1100, 200: 1600, 300: 2050 } }
-            }
-        },
-        offset: {
-            '90x50': { none: 1200, gloss10: 1250, gloss11: 1850 },
-            '85x55': { none: 1250, gloss10: 1350, gloss11: 2000 },
-            '70x100': { gloss10: 1900 }
-        },
-        extras: { round: 400, hole: 450 }
-    },
-    flyers: {
-        digital: {
-            flyer: { '4+0': { 100: 900, 200: 1450, 300: 1950 }, '4+4': { 100: 1300, 200: 2250, 300: 3100 } },
-            dva: { '4+4': { 100: 3600, 200: 6350 } },
-            booklet: { '4+4': { 100: 3300, 200: 6000, 300: 8800 } },
-            a7: { '4+0': { 100: 550, 200: 850, 300: 1050 }, '4+4': { 100: 750, 200: 1100, 300: 1450 } },
-            a6: { '4+0': { 100: 800, 200: 1150, 300: 1650 }, '4+4': { 100: 1050, 200: 1700, 300: 2500 } },
-            a5: { '4+0': { 100: 1150, 200: 1950, 300: 2750 }, '4+4': { 100: 1750, 200: 3100, 300: 4250 } },
-            a4: { '4+0': { 100: 1950, 200: 3600 }, '4+4': { 100: 3050, 200: 5600 } }
-        },
-        offset: {
-            flyer: { 500: 1900, 1000: 2350, 2500: 5350, 5000: 8250, 10000: 13350 },
-            dva: { 500: 4150, 1000: 5400, 2500: 11950, 5000: 18700, 10000: 31650 },
-            booklet: { 500: 5550, 1000: 7300, 2500: 16100, 5000: 24700, 10000: 42450 },
-            a7: { 1000: 1900, 2000: 2400, 5000: 4950, 10000: 7500 },
-            a6: { 500: 1900, 1000: 2350, 2500: 5050, 5000: 7500, 10000: 12400 },
-            a5: { 500: 2850, 1000: 3700, 2500: 7800, 5000: 13200, 10000: 21950 },
-            a4: { 500: 5050, 1000: 6550, 2500: 13800, 5000: 20100 }
-        }
-    },
-    formatNames: {
-        '90x50': 'Визитки (90×50 мм)',
-        '85x55': 'Евровизитки (85×55 мм)',
-        '70x100': 'Карманный календарик (70×100 мм)',
-        flyer: 'Еврофлаер (99×210 мм)',
-        dva: 'Два евро (198×210 мм)',
-        booklet: 'Евробуклет (297×210 мм)',
-        a7: 'А7 (100×74 мм)',
-        a6: 'А6 (148×105 мм)',
-        a5: 'А5 (210×148 мм)',
-        a4: 'А4 (210×297 мм)'
-    },
-    lamNames: { none: 'Без ламинации', gloss10: 'Глянец (1+0)', gloss11: 'Глянец (1+1)', soft11: 'Soft-Touch (1+1)' }
-};
-
-// === КАЛЬКУЛЯТОР ===
-(function() {
-    const P = polyPricelist;
-    const allQty = [100, 200, 300, 500, 1000, 2000, 2500, 5000, 10000];
-    const digitalQty = [100, 200, 300];
-    const offsetQty = [500, 1000, 2000, 2500, 5000, 10000];
-    const listQtyGroup = document.querySelector('[data-field="listQty"]');
-    const printOnly44 = ['dva', 'booklet'];
-
-    function perFmt(total, qty) {
-        const val = total / qty;
-        return val < 10 ? val.toFixed(2) : Math.round(val);
-    }
-
-    // Tabs
-    document.querySelectorAll('.pg-calc__tab').forEach(tab => {
-        tab.addEventListener('click', () => {
-            document.querySelectorAll('.pg-calc__tab').forEach(t => t.classList.remove('pg-calc__tab--active'));
-            document.querySelectorAll('.pg-calc__content').forEach(c => c.classList.remove('pg-calc__content--active'));
-            tab.classList.add('pg-calc__tab--active');
-            document.querySelector(`[data-content="${tab.dataset.tab}"]`).classList.add('pg-calc__content--active');
-            calcVis();
-            calcList();
-        });
-    });
-
-    // Pill clicks
-    document.querySelectorAll('.pg-calc__pills').forEach(group => {
-        group.querySelectorAll('.pg-calc__pill').forEach(pill => {
-            pill.addEventListener('click', () => {
-                group.querySelectorAll('.pg-calc__pill').forEach(p => p.classList.remove('pg-calc__pill--active'));
-                pill.classList.add('pg-calc__pill--active');
-                onFieldChange(group.dataset.field);
-            });
-        });
-    });
-
-    function getVal(field) {
-        const el = document.querySelector(`[data-field="${field}"] .pg-calc__pill--active`);
-        return el ? el.dataset.value : null;
-    }
-
-    function fmt(n) { return n.toLocaleString('ru-RU'); }
-
-    // Собираем доступные тиражи для формата и красочности листовок
-    function getAvailableQty(format, print) {
-        const avail = new Set();
-        const digi = P.flyers.digital[format];
-        if (digi && digi[print]) {
-            Object.keys(digi[print]).forEach(q => avail.add(parseInt(q)));
-        }
-        const off = P.flyers.offset[format];
-        if (off) {
-            Object.keys(off).forEach(q => avail.add(parseInt(q)));
-        }
-        return allQty.filter(q => avail.has(q));
-    }
-
-    // Перестроение кнопок тиражей для листовок
-    function rebuildListQtyButtons(format, print) {
-        const available = getAvailableQty(format, print);
-        const current = parseInt(getVal('listQty')) || 0;
-
-        listQtyGroup.innerHTML = available.map(q => {
-            const label = q.toLocaleString('ru-RU');
-            const isActive = q === current || (!available.includes(current) && q === available[0]);
-            return `<button class="pg-calc__pill${isActive ? ' pg-calc__pill--active' : ''}" data-value="${q}">${label}</button>`;
-        }).join('');
-
-        listQtyGroup.querySelectorAll('.pg-calc__pill').forEach(pill => {
-            pill.addEventListener('click', () => {
-                listQtyGroup.querySelectorAll('.pg-calc__pill').forEach(p => p.classList.remove('pg-calc__pill--active'));
-                pill.classList.add('pg-calc__pill--active');
-                calcList();
-            });
-        });
-
-        if (!available.includes(current) && available.length > 0) {
-            listQtyGroup.querySelector('.pg-calc__pill').classList.add('pg-calc__pill--active');
-        }
-    }
-
-    // Ближайший доступный тираж
-    function nearestQty(qty, available) {
-        if (available.includes(qty)) return qty;
-        let best = available[0];
-        for (const q of available) {
-            if (Math.abs(q - qty) < Math.abs(best - qty)) best = q;
-        }
-        return best;
-    }
-
-    // Баг 3: блокировка доп-опций при малых тиражах
-    function updateExtrasState() {
-        const qty = parseInt(getVal('visQty'));
-        const isSmall = !qty || qty < 1000;
-        document.querySelectorAll('[data-option]').forEach(ch => {
-            ch.disabled = isSmall;
-            if (isSmall) ch.checked = false;
-        });
-    }
-
-    // Баг 2: календарик 70x100 — только 1000, только gloss10
-    function handleCalendaric() {
-        const size = getVal('visSize');
-        const isCal = size === '70x100';
-        const lamGroup = document.querySelector('[data-field="visLam"]');
-        const qtyGroup = document.querySelector('[data-field="visQty"]');
-
-        if (isCal) {
-            lamGroup.querySelectorAll('.pg-calc__pill').forEach(p => {
-                const disabled = p.dataset.value !== 'gloss10';
-                p.disabled = disabled;
-                p.classList.toggle('pg-calc__pill--disabled', disabled);
-                if (p.dataset.value === 'gloss10') p.classList.add('pg-calc__pill--active');
-            });
-            qtyGroup.querySelectorAll('.pg-calc__pill').forEach(p => {
-                const disabled = p.dataset.value !== '1000';
-                p.disabled = disabled;
-                p.classList.toggle('pg-calc__pill--disabled', disabled);
-                if (p.dataset.value === '1000') p.classList.add('pg-calc__pill--active');
-            });
-        } else {
-            lamGroup.querySelectorAll('.pg-calc__pill').forEach(p => {
-                p.disabled = false;
-                p.classList.remove('pg-calc__pill--disabled');
-            });
-            qtyGroup.querySelectorAll('.pg-calc__pill').forEach(p => {
-                p.disabled = false;
-                p.classList.remove('pg-calc__pill--disabled');
-            });
-        }
-    }
-
-    function onFieldChange(field) {
-        if (field === 'visSize') handleCalendaric();
-        if (field === 'visQty') updateExtrasState();
-
-        if (field === 'listFormat' || field === 'listPrint') {
-            const format = getVal('listFormat');
-            const print = getVal('listPrint');
-            if (printOnly44.includes(format) && print === '4+0') {
-                const printGroup = document.querySelector('[data-field="listPrint"]');
-                printGroup.querySelectorAll('.pg-calc__pill').forEach(p => p.classList.remove('pg-calc__pill--active'));
-                printGroup.querySelector('[data-value="4+4"]').classList.add('pg-calc__pill--active');
-            }
-            rebuildListQtyButtons(format, getVal('listPrint'));
-        }
-        calcVis();
-        calcList();
-    }
-
-    // === ВИЗИТКИ ===
-    function calcVis() {
-        const size = getVal('visSize');
-        const print = getVal('visPrint');
-        const lam = getVal('visLam');
-        const qty = parseInt(getVal('visQty'));
-        if (!size || !print || !lam || !qty) return;
-
-        const isOffset = qty === 1000;
-        let base = null;
-
-        if (isOffset && P.visits.offset[size] && P.visits.offset[size][lam] !== undefined) {
-            base = P.visits.offset[size][lam];
-        } else if (P.visits.digital[size] && P.visits.digital[size][lam] && P.visits.digital[size][lam][print]) {
-            base = P.visits.digital[size][lam][print][qty];
-        }
-
-        if (base === null) {
-            document.getElementById('visPrice').textContent = '— ₽';
-            document.getElementById('visPer').textContent = '—';
-            document.getElementById('visDelivery').textContent = 'Срок: —';
-            return;
-        }
-
-        let extras = 0;
-        if (isOffset) {
-            document.querySelectorAll('[data-option]').forEach(ch => {
-                if (ch.checked && !ch.disabled) extras += (qty / 1000) * P.visits.extras[ch.dataset.option];
-            });
-        }
-
-        const total = base + extras;
-        const per = perFmt(total, qty);
-        const delivery = isOffset ? '5–7 рабочих дней (Офсетный тираж)' : '1–2 рабочих дня (Оперативная цифра)';
-
-        document.getElementById('visPrice').textContent = fmt(total) + ' ₽';
-        document.getElementById('visPer').textContent = per + ' ₽/шт';
-        document.getElementById('visDelivery').textContent = 'Срок изготовления: ' + delivery;
-    }
-
-    // === ЛИСТОВКИ ===
-    function calcList() {
-        const format = getVal('listFormat');
-        const print = getVal('listPrint');
-        const qty = parseInt(getVal('listQty'));
-        const express = document.querySelector('[data-field="listExpress"]')?.checked || false;
-        if (!format || !print || !qty) return;
-
-        const available = getAvailableQty(format, print);
-        const safeQty = nearestQty(qty, available);
-
-        if (safeQty !== qty) {
-            listQtyGroup.querySelectorAll('.pg-calc__pill').forEach(p => p.classList.remove('pg-calc__pill--active'));
-            const btn = listQtyGroup.querySelector(`[data-value="${safeQty}"]`);
-            if (btn) btn.classList.add('pg-calc__pill--active');
-        }
-
-        const isOffset = safeQty >= 500;
-        let base = null;
-
-        if (isOffset && P.flyers.offset[format] && P.flyers.offset[format][safeQty] !== undefined) {
-            base = P.flyers.offset[format][safeQty];
-        } else if (P.flyers.digital[format] && P.flyers.digital[format][print] && P.flyers.digital[format][print][safeQty] !== undefined) {
-            base = P.flyers.digital[format][print][safeQty];
-        }
-
-        if (base === null) {
-            document.getElementById('listPrice').textContent = '— ₽';
-            document.getElementById('listPer').textContent = '—';
-            document.getElementById('listDelivery').textContent = 'Срок: —';
-            return;
-        }
-
-        if (isOffset && express) base = Math.round(base * 1.15);
-
-        const per = perFmt(base, safeQty);
-        let delivery;
-        if (isOffset && express) delivery = '3–4 рабочих дня (Экспресс-офсет)';
-        else if (isOffset) delivery = '5–7 рабочих дней (Офсетный тираж)';
-        else delivery = '1–2 рабочих дня (Оперативная цифра)';
-
-        document.getElementById('listPrice').textContent = fmt(base) + ' ₽';
-        document.getElementById('listPer').textContent = per + ' ₽/шт';
-        document.getElementById('listDelivery').textContent = 'Срок изготовления: ' + delivery;
-    }
-
-    // Чекбоксы визиток
-    document.querySelectorAll('[data-option]').forEach(ch => ch.addEventListener('change', calcVis));
-    // Чекбокс листовок
-    document.querySelector('[data-field="listExpress"]')?.addEventListener('change', calcList);
-    // Чекбокс "Нет макета"
-    document.querySelector('[data-field="noDesign"]')?.addEventListener('change', function() {
-        document.getElementById('visDesign').style.display = this.checked ? 'block' : 'none';
-        document.getElementById('visUpload').style.display = this.checked ? 'none' : 'flex';
-    });
-    document.querySelector('[data-field="noDesignList"]')?.addEventListener('change', function() {
-        document.getElementById('listDesign').style.display = this.checked ? 'block' : 'none';
-        document.getElementById('listUpload').style.display = this.checked ? 'none' : 'flex';
-    });
-
-    // Клик по области загрузки
-    document.querySelectorAll('.pg-calc__upload').forEach(area => {
-        area.addEventListener('click', () => {
-            area.querySelector('.pg-calc__file-input').click();
-        });
-    });
-
-    // Кнопка «Оформить заказ»
-    document.querySelectorAll('.pg-calc__order').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const type = btn.dataset.order;
-            let text = 'Заказ из калькулятора:\n\n';
-
-            if (type === 'vis') {
-                const size = getVal('visSize');
-                const print = getVal('visPrint');
-                const lam = getVal('visLam');
-                const qty = getVal('visQty');
-                const noDesign = document.querySelector('[data-field="noDesign"]')?.checked;
-                const isOffset = qty === '1000';
-                const extras = [];
-                if (isOffset) {
-                    document.querySelectorAll('[data-option]').forEach(ch => {
-                        if (ch.checked) extras.push(ch.parentElement.textContent.trim());
-                    });
-                }
-                text += `• Изделие: ${P.formatNames[size]}\n• Материал: Мелованный картон 300 г/м²\n• Печать: ${print} (${isOffset ? 'Офсетная' : 'Цифровая'})\n• Покрытие: ${P.lamNames[lam]}\n• Тираж: ${qty} шт.\n• Стоимость: ${document.getElementById('visPrice').textContent}\n• ${document.getElementById('visDelivery').textContent}`;
-                if (extras.length) text += `\n• Допы: ${extras.join(', ')}`;
-                if (noDesign) text += `\n• Требуется разработка макета: Да`;
-            } else {
-                const fmt = getVal('listFormat');
-                const print = getVal('listPrint');
-                const qty = getVal('listQty');
-                const noDesign = document.querySelector('[data-field="noDesignList"]')?.checked;
-                const express = document.querySelector('[data-field="listExpress"]')?.checked;
-                const isOffset = parseInt(qty) >= 500;
-                text += `• Изделие: ${P.formatNames[fmt]}\n• Материал: Мелованная бумага 130 г/м²\n• Печать: ${print} (${isOffset ? 'Офсетная' : 'Цифровая'})\n• Тираж: ${qty} шт.\n• Стоимость: ${document.getElementById('listPrice').textContent}\n• ${document.getElementById('listDelivery').textContent}`;
-                if (noDesign) text += `\n• Требуется разработка макета: Да`;
-            }
-
-            document.getElementById('calcOrderText').value = text;
-            const form = document.getElementById('calcOrderForm');
-            form.style.display = 'flex';
-            form.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        });
-    });
-
-    // Init: строим кнопки тиражей и считаем
-    const initFormat = getVal('listFormat') || 'flyer';
-    const initPrint = getVal('listPrint') || '4+0';
-    rebuildListQtyButtons(initFormat, initPrint);
-    handleCalendaric();
-    updateExtrasState();
-    calcVis();
-    calcList();
-})();
-
 // === ПОРТФОЛИО ===
 (function() {
     const track = document.getElementById('portTrack');
     const cards = track.querySelectorAll('.pg-portfolio__card');
     const filters = document.querySelectorAll('.pg-portfolio__filter');
 
-    // Фильтрация
     filters.forEach(btn => {
         btn.addEventListener('click', () => {
             filters.forEach(f => f.classList.remove('pg-portfolio__filter--active'));
@@ -1233,7 +948,6 @@ const polyPricelist = {
         });
     });
 
-    // Стрелки
     const step = 300;
     document.getElementById('portLeft').addEventListener('click', () => {
         track.scrollBy({ left: -step, behavior: 'smooth' });

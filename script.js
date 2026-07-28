@@ -1,3 +1,740 @@
+// === ГЛОБАЛЬНЫЙ ОБЪЕКТ ЦЕН (под WordPress/ACF) ===
+const pricingData = {
+    extras: {
+        fold: 0.15,      // Фальцовка (сгиб) за 1 шт.
+        big: 0.75,       // Биговка (канавка) за 1 шт.
+        cut: 75,         // Дополнительный рез за каждые 500 шт.
+        perf: 0.3,       // Перфорация за 1 шт.
+        hole: 450,       // Отверстие 5 мм за 1000 шт.
+        corners: 390     // Закругление углов за 1000 шт.
+    },
+    products: {
+        business_cards: {
+            title: 'Визитки (90x50 мм / 85x55 мм)',
+            image: 'images/products/business-card.png',
+            papers: ['Мелованная 300г'],
+            prices: { 100: 650, 200: 1000, 300: 1300, 500: 1500, 1000: 1800, 2000: 3200 }
+        },
+        kubariki: {
+            title: 'Кубарики (90x90 мм)',
+            image: 'images/products/kubariki.png',
+            papers: ['Офсетная 80г'],
+            prices: { 100: 1200, 500: 3500, 1000: 5800 }
+        },
+        calendars: {
+            title: 'Календарики (100x70 мм)',
+            image: 'images/products/calendar.png',
+            papers: ['Мелованная 300г + Ламинация'],
+            calendar: {
+                none:    { 1000: 1752, 2000: 3467, 3000: 5213, 4000: 6930, 5000: 8657, 10000: 17304 },
+                lam_1_0: { 1000: 2087, 2000: 4166, 3000: 6222, 4000: 8303, 5000: 10346, 10000: 20684 },
+                lam_1_1: { 1000: 2916, 2000: 5805, 3000: 8699, 4000: 11609, 5000: 14456, 10000: 28907 }
+            }
+        },
+        euro_flayer: {
+            title: 'Еврофлаер (210x99 мм)',
+            image: 'images/products/euro.png',
+            papers: ['Мелованная 115г', 'Мелованная 130г', 'Мелованная 170г', 'Мелованная 300г'],
+            prices: { 500: 2100, 1000: 2800, 2000: 4900, 5000: 9500 }
+        },
+        euro_booklet: {
+            title: 'Евробуклет (297x210 мм, 2 сгиба)',
+            image: 'images/products/euro-booklet.png',
+            papers: ['Мелованная 115г', 'Мелованная 130г', 'Мелованная 170г'],
+            prices: { 500: 4200, 1000: 5900, 2000: 10500, 5000: 21000 }
+        },
+        a7: {
+            title: 'Листовки A7 (105x74 мм)',
+            image: 'images/products/a7.png',
+            papers: ['Мелованная 115г', 'Мелованная 130г', 'Мелованная 300г'],
+            prices: { 1000: 1900, 2000: 3100, 5000: 5800 }
+        },
+        a6: {
+            title: 'Листовки A6 (148x105 мм)',
+            image: 'images/products/a6.png',
+            papers: ['Мелованная 115г', 'Мелованная 130г', 'Мелованная 170г', 'Мелованная 300г'],
+            prices: { 500: 1800, 1000: 2600, 2000: 4400, 5000: 8900 }
+        },
+        a5: {
+            title: 'Листовки A5 (210x148 мм)',
+            image: 'images/products/a5.png',
+            papers: ['Мелованная 115г', 'Мелованная 130г', 'Мелованная 170г', 'Мелованная 300г'],
+            prices: { 500: 2900, 1000: 4300, 2000: 7600, 5000: 16200 }
+        },
+        a4: {
+            title: 'Листовки / Плакаты A4 (297x210 мм)',
+            image: 'images/products/a4.png',
+            papers: ['Мелованная 115г', 'Мелованная 130г', 'Мелованная 170г', 'Мелованная 300г'],
+            prices: { 500: 4900, 1000: 7200, 2000: 13100, 5000: 29500 }
+        },
+        a3: {
+            title: 'Плакаты A3 (420x297 мм)',
+            image: 'images/products/a3.png',
+            papers: ['Мелованная 115г', 'Мелованная 130г', 'Мелованная 170г'],
+            prices: { 250: 4800, 500: 7900, 1000: 12500 }
+        },
+        placemat: {
+            title: 'Плейсметы (396x288 мм)',
+            image: 'images/products/placemat.png',
+            papers: ['Офсетная 80г', 'Крафт 70г'],
+            prices: { 1000: 5200, 2000: 8900, 5000: 18500 }
+        },
+        henger: {
+            title: 'Хенгеры (88x201 мм)',
+            image: 'images/products/henger.png',
+            papers: ['Мелованная 300г'],
+            prices: { 1000: 4100, 2000: 6900, 5000: 14200 }
+        }
+    },
+    // Маппинг data-value кнопок формы → ключи products
+    productMap: {
+        '90x50': 'business_cards',
+        '85x55': 'business_cards',
+        '70x100': 'calendars',
+        flyer: 'euro_flayer',
+        dva: 'euro_flayer',
+        booklet: 'euro_booklet',
+        a7: 'a7',
+        a6: 'a6',
+        a5: 'a5',
+        a4: 'a4',
+        a3: 'a3'
+    },
+    // Коэффициенты для особых форматов (Два евро = 4× еврофлаер)
+    productMult: {
+        'dva': 4.0
+    },
+    paperMult: { '115': 0.92, '130': 1, '170': 1.15, '300': 1.4 },
+    lamMult: { none: 1, gloss10: 1.05, gloss11: 1.08, soft11: 1.12 },
+    lamNames: { none: 'Без ламинации', gloss10: 'Глянец (1+0)', gloss11: 'Глянец (1+1)', soft11: 'Soft-Touch (1+1)' },
+    // Маппинг ламинации → ключ calendar
+    lamToCalendar: { none: 'none', gloss10: 'lam_1_0', gloss11: 'lam_1_1', soft11: 'lam_1_1' }
+};
+
+// ==========================================
+// КАЛЬКУЛЯТОР ПОЛИГРАФИИ
+// ==========================================
+(function() {
+    const P = pricingData;
+    const hintEl = document.querySelector('.pg-calc__hint');
+    const listQtyGroup = document.querySelector('[data-field="listQty"]');
+
+    const HINT_TEXTS = {
+        offset: 'Сборные тиражи — печать нескольких заказов на одном листе. Самая низкая цена от 1000 шт., срок 3–5 дней.',
+        digital: 'Цифровая печать — оперативное изготовление от 1 дня. Идеально для малых тиражей до 300 шт.'
+    };
+
+    // Утилиты
+    function fmt(n) { return n.toLocaleString('ru-RU'); }
+
+    function perFmt(total, qty) {
+        const val = total / qty;
+        return val < 10 ? val.toFixed(2) : Math.round(val);
+    }
+
+    function getActivePill(field) {
+        const el = document.querySelector(`[data-field="${field}"] .pg-calc__pill--active`);
+        return el ? el.dataset.value : null;
+    }
+
+    function getSelectVal(field) {
+        const el = document.querySelector(`[data-field="${field}"]`);
+        return el ? el.value : '130';
+    }
+
+    function getChecked(field) {
+        const el = document.querySelector(`[data-field="${field}"]`);
+        return el ? el.checked : false;
+    }
+
+    function isCheckboxChecked(option) {
+        const el = document.querySelector(`[data-option="${option}"]`);
+        return el ? el.checked : false;
+    }
+
+    // Получить продукт по ключу формы
+    function getProduct(formatKey) {
+        const productKey = P.productMap[formatKey];
+        if (!productKey) return null;
+        return P.products[productKey] || null;
+    }
+
+    // Получить таблицу цен для продукта (обычную или calendar[lamKey])
+    function getPriceTable(formatKey, lamKey) {
+        const prod = getProduct(formatKey);
+        if (!prod) return null;
+        if (prod.calendar) {
+            const calKey = P.lamToCalendar[lamKey] || 'lam_1_0';
+            return prod.calendar[calKey] || null;
+        }
+        return prod.prices || null;
+    }
+
+    // Ближайший доступный тираж для продукта
+    function nearestQty(formatKey, qty, lamKey) {
+        const table = getPriceTable(formatKey, lamKey);
+        if (!table) return qty;
+        const keys = Object.keys(table).map(Number).sort((a, b) => a - b);
+        if (table[qty] !== undefined) return qty;
+        let best = keys[0];
+        for (const k of keys) {
+            if (Math.abs(k - qty) < Math.abs(best - qty)) best = k;
+        }
+        return best;
+    }
+
+    // Базовая цена продукта по ближайшему тиражу
+    function getBasePrice(formatKey, qty, lamKey) {
+        const table = getPriceTable(formatKey, lamKey);
+        if (!table) return null;
+        if (table[qty] !== undefined) return table[qty];
+        const keys = Object.keys(table).map(Number).sort((a, b) => a - b);
+        let best = keys[0];
+        for (const k of keys) {
+            if (Math.abs(k - qty) < Math.abs(best - qty)) best = k;
+        }
+        return table[best];
+    }
+
+    // Список доступных тиражей для продукта
+    function getAvailableQty(formatKey, lamKey) {
+        const table = getPriceTable(formatKey, lamKey);
+        if (!table) return [];
+        return Object.keys(table).map(Number).sort((a, b) => a - b);
+    }
+
+    // ==========================================
+    // 1. ГЛАВНЫЕ ТАБЫ: Офсет / Цифра
+    // ==========================================
+    document.querySelectorAll('#pgTopTabs .pg-calc__tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+            const tabName = this.dataset.tab;
+            document.querySelectorAll('#pgTopTabs .pg-calc__tab').forEach(t => t.classList.remove('pg-calc__tab--active'));
+            this.classList.add('pg-calc__tab--active');
+            document.querySelectorAll('.pg-calc__content').forEach(c => c.classList.remove('pg-calc__content--active'));
+            const content = document.querySelector(`[data-content="${tabName}"]`);
+            if (content) content.classList.add('pg-calc__content--active');
+            if (hintEl) hintEl.textContent = HINT_TEXTS[tabName] || '';
+        });
+    });
+
+    // ==========================================
+    // 2. САБ-ТАБЫ: Визитки / Листовки
+    // ==========================================
+    function switchSubTab(subtab) {
+        document.querySelectorAll('.pg-calc__sub-tabs .pg-calc__tab').forEach(t => t.classList.remove('pg-calc__tab--active'));
+        document.querySelectorAll('.pg-calc__sub-content').forEach(c => c.classList.remove('pg-calc__sub-content--active'));
+        const activeTab = document.querySelector(`.pg-calc__sub-tabs .pg-calc__tab[data-subtab="${subtab}"]`);
+        if (activeTab) activeTab.classList.add('pg-calc__tab--active');
+        const activeContent = document.querySelector(`[data-subcontent="${subtab}"]`);
+        if (activeContent) activeContent.classList.add('pg-calc__sub-content--active');
+        calculatePrice();
+    }
+
+    document.querySelectorAll('.pg-calc__sub-tabs .pg-calc__tab').forEach(tab => {
+        tab.addEventListener('click', function() { switchSubTab(this.dataset.subtab); });
+    });
+
+    // ==========================================
+    // 3. ПИЛЛЫ: клик по любой кнопке-пиллу
+    // ==========================================
+    document.querySelectorAll('.pg-calc__pills').forEach(group => {
+        group.addEventListener('click', function(e) {
+            const pill = e.target.closest('.pg-calc__pill');
+            if (!pill || pill.disabled) return;
+            group.querySelectorAll('.pg-calc__pill').forEach(p => p.classList.remove('pg-calc__pill--active'));
+            pill.classList.add('pg-calc__pill--active');
+            onFieldChange(group.dataset.field);
+        });
+    });
+
+    // ==========================================
+    // 4. СЕЛЕКТЫ: изменение бумаги
+    // ==========================================
+    document.querySelectorAll('.pg-calc__select').forEach(sel => {
+        sel.addEventListener('change', function() { onFieldChange(this.dataset.field); });
+    });
+
+    // ==========================================
+    // 5. ЧЕКБОКСЫ: доп. обработка, срочность, нет макета
+    // ==========================================
+    document.querySelectorAll('.pg-calc__checks input[type="checkbox"]').forEach(ch => {
+        ch.addEventListener('change', function() {
+            if (this.dataset.field === 'noDesign') {
+                const d = document.getElementById('visDesign'), u = document.getElementById('visUpload');
+                if (d) d.style.display = this.checked ? 'block' : 'none';
+                if (u) u.style.display = this.checked ? 'none' : 'flex';
+            }
+            if (this.dataset.field === 'noDesignList') {
+                const d = document.getElementById('listDesign'), u = document.getElementById('listUpload');
+                if (d) d.style.display = this.checked ? 'block' : 'none';
+                if (u) u.style.display = this.checked ? 'none' : 'flex';
+            }
+            calculatePrice();
+        });
+    });
+
+    // ==========================================
+    // 5b. ПРОИЗВОЛЬНЫЙ ТИРАЖ: округление, скидка, расчёт
+    // ==========================================
+    document.querySelectorAll('.pg-calc__input-custom').forEach(input => {
+        // При потере фокуса — округлить до ближайшей тысячи вверх
+        input.addEventListener('blur', function() {
+            let val = parseInt(this.value);
+            if (!isNaN(val) && val > 0) {
+                const rounded = Math.ceil(val / 1000) * 1000;
+                if (rounded < 1000) this.value = 1000;
+                else this.value = rounded;
+            }
+            updateDiscountNote();
+            calculatePrice();
+        });
+
+        // При вводе Enter — тоже округлить
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                this.blur();
+            }
+        });
+
+        // При изменении значения (стрелки, ручной ввод) — пересчёт
+        input.addEventListener('input', function() {
+            updateDiscountNote();
+            calculatePrice();
+        });
+    });
+
+    // Получить актуальный тираж: кастомный инпут или активный пилл
+    function getActualQty(field, customField) {
+        const customInput = document.querySelector(`[data-field="${customField}"]`);
+        if (customInput && customInput.value) {
+            const val = parseInt(customInput.value);
+            if (!isNaN(val) && val >= 1000) return val;
+        }
+        return parseInt(getActivePill(field)) || 0;
+    }
+
+    // Показать/скрыть блок скидки
+    function updateDiscountNote() {
+        const visCustom = document.querySelector('[data-field="visQtyCustom"]');
+        const listCustom = document.querySelector('[data-field="listQtyCustom"]');
+        const visQty = visCustom && visCustom.value ? parseInt(visCustom.value) : parseInt(getActivePill('visQty')) || 0;
+        const listQty = listCustom && listCustom.value ? parseInt(listCustom.value) : parseInt(getActivePill('listQty')) || 0;
+
+        document.querySelectorAll('.pg-calc__discount-note').forEach(note => {
+            const isVis = note.closest('[data-subcontent="vis"]');
+            const qty = isVis ? visQty : listQty;
+            note.style.display = (qty >= 10000) ? 'block' : 'none';
+        });
+    }
+
+    // ==========================================
+    // 6. ПРЕВЬЮ-КАРТИНКА (из products[key].image)
+    // ==========================================
+    function updatePreview(type, formatKey) {
+        const imgId = type === 'vis' ? 'visPreviewImg' : 'listPreviewImg';
+        const img = document.getElementById(imgId);
+        if (!img) return;
+        const prod = getProduct(formatKey);
+        const src = prod ? prod.image : null;
+        if (src) {
+            img.src = src;
+            img.onerror = function() { this.src = 'images/polygraphy.png'; };
+        }
+    }
+
+    // ==========================================
+    // 7. ПЕРЕСТРОЕНИЕ КНОПОК ТИРАЖЕЙ (листовки)
+    // ==========================================
+    function rebuildListQtyButtons(formatKey) {
+        if (!listQtyGroup) return;
+        const available = getAvailableQty(formatKey);
+        const current = parseInt(getActivePill('listQty')) || 0;
+        listQtyGroup.innerHTML = available.map(q => {
+            const label = q.toLocaleString('ru-RU');
+            const isActive = q === current || (!available.includes(current) && q === available[0]);
+            return `<button class="pg-calc__pill${isActive ? ' pg-calc__pill--active' : ''}" data-value="${q}">${label}</button>`;
+        }).join('');
+        listQtyGroup.querySelectorAll('.pg-calc__pill').forEach(pill => {
+            pill.addEventListener('click', function() {
+                listQtyGroup.querySelectorAll('.pg-calc__pill').forEach(p => p.classList.remove('pg-calc__pill--active'));
+                this.classList.add('pg-calc__pill--active');
+                calculatePrice();
+            });
+        });
+        if (!available.includes(current) && available.length > 0) {
+            const first = listQtyGroup.querySelector('.pg-calc__pill');
+            if (first) first.classList.add('pg-calc__pill--active');
+        }
+    }
+
+    // ==========================================
+    // 8. ОСНОВНАЯ ФУНКЦИЯ РАСЧЁТА
+    // ==========================================
+    function calculatePrice() {
+        const visContent = document.querySelector('[data-subcontent="vis"]');
+        const isVisActive = visContent && visContent.classList.contains('pg-calc__sub-content--active');
+        if (isVisActive) {
+            calcVisits();
+        } else {
+            calcFlyers();
+        }
+    }
+
+    // --- Расчёт визиток ---
+    function calcVisits() {
+        const size = getActivePill('visSize');
+        const qty = getActualQty('visQty', 'visQtyCustom');
+        const paper = getSelectVal('visPaper');
+        const lam = getActivePill('visLam');
+
+        if (!size || !qty) { setVisResult('— ₽', '— ₽/шт', 'Срок: —'); return; }
+
+        const prod = getProduct(size);
+        const isCalendar = prod && !!prod.calendar;
+
+        let total;
+        if (isCalendar) {
+            // Календарики: точная цена из calendar[lamKey], без множителей
+            const basePrice = getBasePrice(size, qty, lam);
+            if (basePrice === null) { setVisResult('— ₽', '— ₽/шт', 'Срок: —'); return; }
+            total = basePrice;
+        } else {
+            // Для произвольного тиража: пропорционально цене за 1000 шт
+            const pricePer1k = getBasePrice(size, 1000);
+            if (pricePer1k === null) { setVisResult('— ₽', '— ₽/шт', 'Срок: —'); return; }
+            const paperMult = P.paperMult[paper] || 1;
+            const lamMult = P.lamMult[lam] || 1;
+            total = Math.round(pricePer1k * (qty / 1000) * paperMult * lamMult);
+        }
+
+        const isOffset = qty >= 1000;
+        if (isOffset) {
+            if (isCheckboxChecked('round')) total += Math.round((qty / 1000) * P.extras.corners);
+            if (isCheckboxChecked('hole')) total += Math.round((qty / 1000) * P.extras.hole);
+        }
+        updateExtrasState(qty);
+
+        const per = perFmt(total, qty);
+        const delivery = isOffset ? '5–7 рабочих дней (Офсетный тираж)' : '1–2 рабочих дня (Оперативная цифра)';
+        setVisResult(fmt(total) + ' ₽', per + ' ₽/шт', 'Срок изготовления: ' + delivery);
+    }
+
+    function setVisResult(price, per, delivery) {
+        const pe = document.getElementById('visPrice'), pe2 = document.getElementById('visPer'), de = document.getElementById('visDelivery');
+        if (pe) pe.textContent = price;
+        if (pe2) pe2.textContent = per;
+        if (de) de.textContent = delivery;
+    }
+
+    function updateExtrasState(qty) {
+        const isSmall = !qty || qty < 1000;
+        document.querySelectorAll('[data-option="round"], [data-option="hole"]').forEach(ch => {
+            ch.disabled = isSmall;
+            if (isSmall) ch.checked = false;
+        });
+    }
+
+    // --- Расчёт листовок/буклетов ---
+    function calcFlyers() {
+        const format = getActivePill('listFormat');
+        const qty = getActualQty('listQty', 'listQtyCustom');
+        const paper = getSelectVal('listPaper');
+        const express = getChecked('listExpress');
+
+        if (!format || !qty) { setListResult('— ₽', '— ₽/шт', 'Срок: —'); return; }
+
+        // Для произвольного тиража: пропорционально цене за 1000 шт
+        const pricePer1k = getBasePrice(format, 1000);
+        if (pricePer1k === null) { setListResult('— ₽', '— ₽/шт', 'Срок: —'); return; }
+
+        const prodMult = P.productMult[format] || 1;
+        const paperMult = P.paperMult[paper] || 1;
+        let total = Math.round(pricePer1k * (qty / 1000) * prodMult * paperMult);
+
+        // Послепечатная обработка
+        const E = P.extras;
+        // Буклет: 2 сгиба
+        const foldCount = format === 'booklet' ? 2 : 1;
+        if (isCheckboxChecked('listFaltsovka')) total += Math.round(qty * E.fold * foldCount);
+        if (isCheckboxChecked('listBigovka')) total += Math.round(qty * E.big);
+        if (isCheckboxChecked('listRez')) total += Math.round(Math.ceil(qty / 500) * E.cut);
+        if (isCheckboxChecked('listPerforatsiya')) total += Math.round(qty * E.perf);
+        if (isCheckboxChecked('listHole')) total += Math.round((qty / 1000) * E.hole);
+        if (isCheckboxChecked('listRound')) total += Math.round((qty / 1000) * E.corners);
+
+        if (express) total = Math.round(total * 1.15);
+
+        const per = perFmt(total, qty);
+        let delivery;
+        if (express) delivery = '3–4 рабочих дня (Экспресс-офсет)';
+        else if (qty >= 500) delivery = '5–7 рабочих дней (Офсетный тираж)';
+        else delivery = '1–2 рабочих дня (Оперативная цифра)';
+
+        setListResult(fmt(total) + ' ₽', per + ' ₽/шт', 'Срок изготовления: ' + delivery);
+    }
+
+    function setListResult(price, per, delivery) {
+        const pe = document.getElementById('listPrice'), pe2 = document.getElementById('listPer'), de = document.getElementById('listDelivery');
+        if (pe) pe.textContent = price;
+        if (pe2) pe2.textContent = per;
+        if (de) de.textContent = delivery;
+    }
+
+    // ==========================================
+    // 9. ОБРАБОТЧИК ИЗМЕНЕНИЯ ПОЛЯ
+    // ==========================================
+    function onFieldChange(field) {
+        if (field === 'visSize') {
+            handleCalendaric();
+            updatePreview('vis', getActivePill('visSize'));
+        }
+        if (field === 'visQty') {
+            updateExtrasState(parseInt(getActivePill('visQty')) || 0);
+        }
+        if (field === 'listFormat') {
+            updatePreview('list', getActivePill('listFormat'));
+            handleBooklet();
+            const fmt = getActivePill('listFormat');
+            if (fmt === 'a3') {
+                handleA3();
+            } else {
+                rebuildListQtyButtons(fmt);
+            }
+        }
+        calculatePrice();
+    }
+
+    // ==========================================
+    // 10. СПЕЦОБРАБОТКА КАЛЕНДАРИКА (70×100)
+    // ==========================================
+    function handleCalendaric() {
+        const size = getActivePill('visSize');
+        const isCal = size === '70x100';
+        const lamGroup = document.querySelector('[data-field="visLam"]');
+        const qtyGroup = document.querySelector('[data-field="visQty"]');
+        const paperSelect = document.querySelector('[data-field="visPaper"]');
+        const printGroup = document.querySelector('[data-field="visPrint"]');
+
+        if (isCal) {
+            // Фиксируем бумагу на 300
+            if (paperSelect) {
+                paperSelect.value = '300';
+                paperSelect.disabled = true;
+            }
+            // Фиксируем красочность на 4+4
+            if (printGroup) {
+                printGroup.querySelectorAll('.pg-calc__pill').forEach(p => {
+                    const d = p.dataset.value !== '4+4';
+                    p.disabled = d;
+                    p.classList.toggle('pg-calc__pill--disabled', d);
+                    if (p.dataset.value === '4+4') p.classList.add('pg-calc__pill--active');
+                    else p.classList.remove('pg-calc__pill--active');
+                });
+            }
+            // Фиксируем ламинацию на gloss10
+            if (lamGroup) {
+                lamGroup.querySelectorAll('.pg-calc__pill').forEach(p => {
+                    const d = p.dataset.value !== 'gloss10';
+                    p.disabled = d;
+                    p.classList.toggle('pg-calc__pill--disabled', d);
+                    if (p.dataset.value === 'gloss10') p.classList.add('pg-calc__pill--active');
+                    else p.classList.remove('pg-calc__pill--active');
+                });
+            }
+            // Перерисовываем тиражи: [1000, 2000, 3000, 4000, 5000, 10000]
+            if (qtyGroup) {
+                const calQtys = [1000, 2000, 3000, 4000, 5000, 10000];
+                const current = parseInt(getActivePill('visQty')) || 0;
+                qtyGroup.innerHTML = calQtys.map(q => {
+                    const label = q.toLocaleString('ru-RU');
+                    const isActive = q === current || (!calQtys.includes(current) && q === calQtys[0]);
+                    return `<button class="pg-calc__pill${isActive ? ' pg-calc__pill--active' : ''}" data-value="${q}">${label}</button>`;
+                }).join('');
+                qtyGroup.querySelectorAll('.pg-calc__pill').forEach(pill => {
+                    pill.addEventListener('click', function() {
+                        qtyGroup.querySelectorAll('.pg-calc__pill').forEach(p => p.classList.remove('pg-calc__pill--active'));
+                        this.classList.add('pg-calc__pill--active');
+                        calculatePrice();
+                    });
+                });
+                if (!calQtys.includes(current) && calQtys.length > 0) {
+                    const first = qtyGroup.querySelector('.pg-calc__pill');
+                    if (first) first.classList.add('pg-calc__pill--active');
+                }
+            }
+        } else {
+            // Восстанавливаем всё
+            if (paperSelect) paperSelect.disabled = false;
+            if (printGroup) {
+                printGroup.querySelectorAll('.pg-calc__pill').forEach(p => { p.disabled = false; p.classList.remove('pg-calc__pill--disabled'); });
+            }
+            if (lamGroup) {
+                lamGroup.querySelectorAll('.pg-calc__pill').forEach(p => { p.disabled = false; p.classList.remove('pg-calc__pill--disabled'); });
+            }
+            // Восстанавливаем стандартные тиражи визиток
+            if (qtyGroup) {
+                const visQtys = [1000, 2000, 3000, 5000, 10000];
+                const current = parseInt(getActivePill('visQty')) || 0;
+                qtyGroup.innerHTML = visQtys.map(q => {
+                    const label = q.toLocaleString('ru-RU');
+                    const isActive = q === current || (!visQtys.includes(current) && q === visQtys[0]);
+                    return `<button class="pg-calc__pill${isActive ? ' pg-calc__pill--active' : ''}" data-value="${q}">${label}</button>`;
+                }).join('');
+                qtyGroup.querySelectorAll('.pg-calc__pill').forEach(pill => {
+                    pill.addEventListener('click', function() {
+                        qtyGroup.querySelectorAll('.pg-calc__pill').forEach(p => p.classList.remove('pg-calc__pill--active'));
+                        this.classList.add('pg-calc__pill--active');
+                        calculatePrice();
+                    });
+                });
+                if (!visQtys.includes(current) && visQtys.length > 0) {
+                    const first = qtyGroup.querySelector('.pg-calc__pill');
+                    if (first) first.classList.add('pg-calc__pill--active');
+                }
+            }
+        }
+    }
+
+    // ==========================================
+    // 10b. СПЕЦОБРАБОТКА БУКЛЕТА
+    // ==========================================
+    function handleBooklet() {
+        const format = getActivePill('listFormat');
+        const isBooklet = format === 'booklet';
+        const paperSelect = document.querySelector('[data-field="listPaper"]');
+        const faltsovkaCh = document.querySelector('[data-option="listFaltsovka"]');
+
+        if (isBooklet) {
+            // Авто-фальцовка: включаем и блокируем
+            if (faltsovkaCh) {
+                faltsovkaCh.checked = true;
+                faltsovkaCh.disabled = true;
+            }
+            // Ограничиваем бумагу: только 115, 130, 170 (без 300)
+            if (paperSelect) {
+                const allowed = ['115', '130', '170'];
+                Array.from(paperSelect.options).forEach(opt => {
+                    opt.hidden = !allowed.includes(opt.value);
+                });
+                if (!allowed.includes(paperSelect.value)) {
+                    paperSelect.value = '130';
+                }
+            }
+        } else {
+            // Восстанавливаем
+            if (faltsovkaCh) {
+                faltsovkaCh.checked = false;
+                faltsovkaCh.disabled = false;
+            }
+            if (paperSelect) {
+                Array.from(paperSelect.options).forEach(opt => { opt.hidden = false; });
+            }
+        }
+    }
+
+    // ==========================================
+    // 10c. СПЕЦОБРАБОТКА A3
+    // ==========================================
+    function handleA3() {
+        const format = getActivePill('listFormat');
+        const isA3 = format === 'a3';
+        if (!isA3) return;
+        // Перерисовываем тиражи: [500, 1000, 2000, 3000, 5000]
+        if (!listQtyGroup) return;
+        const a3Qtys = [500, 1000, 2000, 3000, 5000];
+        const current = parseInt(getActivePill('listQty')) || 0;
+        listQtyGroup.innerHTML = a3Qtys.map(q => {
+            const label = q.toLocaleString('ru-RU');
+            const isActive = q === current || (!a3Qtys.includes(current) && q === a3Qtys[0]);
+            return `<button class="pg-calc__pill${isActive ? ' pg-calc__pill--active' : ''}" data-value="${q}">${label}</button>`;
+        }).join('');
+        listQtyGroup.querySelectorAll('.pg-calc__pill').forEach(pill => {
+            pill.addEventListener('click', function() {
+                listQtyGroup.querySelectorAll('.pg-calc__pill').forEach(p => p.classList.remove('pg-calc__pill--active'));
+                this.classList.add('pg-calc__pill--active');
+                calculatePrice();
+            });
+        });
+        if (!a3Qtys.includes(current) && a3Qtys.length > 0) {
+            const first = listQtyGroup.querySelector('.pg-calc__pill');
+            if (first) first.classList.add('pg-calc__pill--active');
+        }
+    }
+
+    // ==========================================
+    // 11. ЗАГРУЗКА ФАЙЛА
+    // ==========================================
+    document.querySelectorAll('.pg-calc__upload').forEach(area => {
+        area.addEventListener('click', function() {
+            const input = this.querySelector('.pg-calc__file-input');
+            if (input) input.click();
+        });
+    });
+
+    // ==========================================
+    // 12. КНОПКА "ОФОРМИТЬ ЗАКАЗ"
+    // ==========================================
+    document.querySelectorAll('.pg-calc__order').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const type = this.dataset.order;
+            let text = 'Заказ из калькулятора:\n\n';
+            if (type === 'vis') {
+                const size = getActivePill('visSize');
+                const qty = getActivePill('visQty');
+                const paper = getSelectVal('visPaper');
+                const lam = getActivePill('visLam');
+                const noDesign = getChecked('noDesign');
+                const isOffset = parseInt(qty) >= 1000;
+                const prod = getProduct(size);
+                const title = prod ? prod.title : size;
+                const extrasArr = [];
+                if (isOffset) {
+                    if (isCheckboxChecked('round')) extrasArr.push('Скругление углов');
+                    if (isCheckboxChecked('hole')) extrasArr.push('Отверстие 5 мм');
+                }
+                text += `• Изделие: ${title}\n• Бумага: ${paper} г/м²\n• Печать: ${isOffset ? 'Офсетная' : 'Цифровая'}\n• Покрытие: ${P.lamNames[lam] || lam}\n• Тираж: ${qty} шт.\n• Стоимость: ${document.getElementById('visPrice')?.textContent || '—'}\n• ${document.getElementById('visDelivery')?.textContent || ''}`;
+                if (extrasArr.length) text += `\n• Допы: ${extrasArr.join(', ')}`;
+                if (noDesign) text += '\n• Требуется разработка макета: Да';
+            } else {
+                const fmt = getActivePill('listFormat');
+                const qty = getActivePill('listQty');
+                const paper = getSelectVal('listPaper');
+                const noDesign = getChecked('noDesignList');
+                const express = getChecked('listExpress');
+                const isOffset = parseInt(qty) >= 500;
+                const prod = getProduct(fmt);
+                const title = prod ? prod.title : fmt;
+                text += `• Изделие: ${title}\n• Бумага: ${paper} г/м²\n• Печать: ${isOffset ? 'Офсетная' : 'Цифровая'}\n• Тираж: ${qty} шт.\n• Стоимость: ${document.getElementById('listPrice')?.textContent || '—'}\n• ${document.getElementById('listDelivery')?.textContent || ''}`;
+                if (express) text += '\n• Срочность: Да (+15%)';
+                if (noDesign) text += '\n• Требуется разработка макета: Да';
+            }
+            const orderText = document.getElementById('calcOrderText');
+            const orderForm = document.getElementById('calcOrderForm');
+            if (orderText) orderText.value = text;
+            if (orderForm) { orderForm.style.display = 'flex'; orderForm.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+        });
+    });
+
+    // ==========================================
+    // 13. ИНИЦИАЛИЗАЦИЯ ПРИ ЗАГРУЗКЕ
+    // ==========================================
+    function initCalculator() {
+        const initListFormat = getActivePill('listFormat') || 'flyer';
+        rebuildListQtyButtons(initListFormat);
+        handleCalendaric();
+        updateExtrasState(parseInt(getActivePill('visQty')) || 0);
+        calculatePrice();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initCalculator);
+    } else {
+        initCalculator();
+    }
+})();
+
 gsap.registerPlugin(ScrollTrigger);
 
 // PRELOADER
